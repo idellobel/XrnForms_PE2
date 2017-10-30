@@ -1,10 +1,13 @@
-﻿using System;
+﻿using B4.PE2.DellobelI.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace B4.PE2.DellobelI
 {
     public partial class App : Application
@@ -13,7 +16,7 @@ namespace B4.PE2.DellobelI
         {
             InitializeComponent();
 
-            MainPage = new B4.PE2.DellobelI.MainPage();
+            MainPage = new NavigationPage(new MainView());
         }
 
         protected override void OnStart()

@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace B4.PE2.DellobelI
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace B4.PE2.DellobelI.Views
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class FeedbackView : ContentPage
     {
-        public MainPage()
+        public FeedbackView()
         {
             InitializeComponent();
         }

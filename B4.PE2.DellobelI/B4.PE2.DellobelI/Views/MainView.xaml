@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="B4.PE2.DellobelI.Views.MainView"
+             xmlns:extensions="clr-namespace:B4.PE1.DellobelI.Extensions"
+             xmlns:views="clr-namespace:B4.PE2.DellobelI.Views"
+             Title="Timer en Form"
+             Style="{StaticResource ContentPageStyle}">
+    <ContentPage.Content>
+        <AbsoluteLayout AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <ScrollView>
+                <StackLayout Orientation="Vertical"  Margin="20">
+
+                    <Image x:Name="timermpg" HorizontalOptions="Center"
+                    Source="{extensions:ImageResource B4.PE2.DellobelI.images.timermpg.jpg}" Margin="20,20,20,0"
+                       BackgroundColor="Black" Opacity="0.9" 
+                       Aspect="AspectFit"
+                       AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" 
+                       HeightRequest="150">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                 Tapped="Timer_Tapped"
+                                />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Image x:Name="laptimermpg" HorizontalOptions="Center"
+                    Source="{extensions:ImageResource B4.PE2.DellobelI.images.laptimermpg.jpg}" Margin="20,20,20,0"
+                   BackgroundColor="Black" Opacity="0.9"
+                   Aspect="AspectFit"
+                   AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" 
+                   HeightRequest="150">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                             Tapped="Laptimer_Tapped"
+                            />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image x:Name="formmpg" HorizontalOptions="Center"
+                    Source="{extensions:ImageResource B4.PE2.DellobelI.images.formmpg.jpg}" Margin="20"
+                   BackgroundColor="Black" Opacity="0.9"
+                   Aspect="AspectFit"
+                   AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" 
+                   HeightRequest="150">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                             Tapped="Form_Tapped"
+                            />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </ScrollView>
+            <views:BusyView x:Name="busyindicator"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

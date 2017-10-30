@@ -1,10 +1,111 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:B4.PE2.DellobelI.Views"
              x:Class="B4.PE2.DellobelI.App">
-	<Application.Resources>
 
-		<!-- Application resource dictionary -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Reusable OnPlatforms -->
+            <OnPlatform x:Key="PlatformContentPagePadding" x:TypeArguments="Thickness">
+                <On Platform="iOS">5, 20, 5, 5</On>
+                <On Platform="Android">5, 0, 5, 0</On>
+                <On Platform="Windows, UWP">5, 0, 5, 0</On>
+            </OnPlatform>
 
-	</Application.Resources>
+            <!-- Common Colors -->
+            <Color x:Key="ColorPrimary">#2196F3</Color>
+            <Color x:Key="ColorSecundary">#1976D2</Color>
+            <Color x:Key="ColorAccent">#ffffff</Color>
+            <!-- On Platform Resources -->
+            <OnPlatform x:Key="DefaultThickness" x:TypeArguments="Thickness">
+                <On Platform="iOS" Value="15"></On>
+                <On Platform="Android" Value="20"></On>
+                <On Platform="Windows" Value="10"></On>
+            </OnPlatform>
+            <!-- Explicit Styles -->
+            <Style x:Key="MainLayout" TargetType="StackLayout">
+                <Setter Property="Margin" Value="{StaticResource DefaultThickness}" />
+            </Style>
+            <Style x:Key="PrimaryButton" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource ColorAccent}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorPrimary}" />
+            </Style>
+
+            <!-- Common Colors -->
+            <Color x:Key="PageBackgroundColor">#000000</Color>
+            <Color x:Key="TitleTextColor">#ffffb3</Color>
+            <Color x:Key="NormalTextColor">#f3f0eb</Color>
+
+            <!-- Implicit Page Styles (for ALL pages, no x:Key present!) -->
+            <Style x:Key="BasePageStyle" TargetType="Page">
+                <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor}" />
+                <Setter Property="Opacity" Value="0.9"/>
+            </Style>
+            <Style x:Key="ContentPageStyle" TargetType="ContentPage" BasedOn="{StaticResource BasePageStyle}" />
+            <Style x:Key="MasterDetailPageStyle" TargetType="MasterDetailPage" BasedOn="{StaticResource BasePageStyle}" >
+                <Setter Property="BackgroundColor" Value="#ffffcc"></Setter>
+            </Style>
+
+            <!-- ContentPage Style -->
+            <Style x:Key="PlatformPaddedContentPageStyle" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor}" />
+                <Setter Property="Padding" Value="{StaticResource PlatformContentPagePadding}" />
+            </Style>
+
+            <!-- Title (inherits from built-in TitleStyle -->
+            <Style x:Key="CustomTitleStyle" TargetType="Label" BaseResourceKey="TitleStyle">
+                <Setter Property="TextColor" Value="{StaticResource TitleTextColor}" />
+            </Style>
+            <!-- Caption (inherits from built-in CaptionStyle -->
+            <Style x:Key="CustomCaptionStyle" TargetType="Label" BaseResourceKey="CaptionStyle">
+                <Setter Property="TextColor" Value="{StaticResource TitleTextColor}" />
+            </Style>
+            <!-- Implicit style (applies to ALL Labels) for Body (inherits from built-in BodyStyle) -->
+            <Style TargetType="Label" BaseResourceKey="BodyStyle">
+                <Setter Property="TextColor" Value="{StaticResource NormalTextColor}" />
+            </Style>
+            <Style x:Key="WikipageLabel"  TargetType="Label" BaseResourceKey="BodyStyle">
+                <Setter Property="TextColor" Value="#000000" />
+            </Style>
+
+           
+            <!-- Default Buttons --><!--
+            <Color x:Key="DefaultButtonTextColor">#473e36</Color>
+            <Color x:Key="DefaultButtonBackColor">#fef3cd</Color>
+            <Style x:Key="DefaultButtonStyle" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="TextColor" Value="{StaticResource DefaultButtonTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DefaultButtonBackColor}" />
+                <Setter Property="Margin" Value="10,0,10,0" />
+            </Style>
+
+            --><!-- Cancel Buttons --><!--
+            <Color x:Key="CancelButtonTextColor">#fef3cd</Color>
+            <Color x:Key="CancelButtonBackColor">#f67d15</Color>
+            <Style x:Key="CancelButtonStyle" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="TextColor" Value="{StaticResource CancelButtonTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource CancelButtonBackColor}" />
+            </Style>-->
+
+            <!-- Master page Views -->
+            <Color x:Key="MasterPageTextColor">#473e36</Color>
+            <Color x:Key="MasterPageBackgroundColor">#ecffb3</Color>
+            <Style x:Key="MasterPageListView" TargetType="ListView">
+                <Setter Property="BackgroundColor" Value="{StaticResource MasterPageBackgroundColor}" />
+            </Style>
+            <Style x:Key="MasterPageListLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource MasterPageTextColor}" />
+            </Style>
+            <!--Global, Implicit (=Valid for All controls of this Targettype)-->
+            <Style TargetType="views:BusyView" >
+                <Setter Property="BackgroundColor" Value="#000000" />
+                <Setter Property="IsVisible" Value="False" />
+                <Setter Property="AbsoluteLayout.LayoutFlags" Value="All" />
+                <Setter Property="AbsoluteLayout.LayoutBounds" Value="0,0,1,1" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

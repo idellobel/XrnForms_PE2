@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="B4.PE2.DellobelI.Views.LapTimerView"
+             Title="&#x23f2;" 
+             Style="{StaticResource ContentPageStyle}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="LapTimer" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <StackLayout VerticalOptions="CenterAndExpand"  Orientation="Vertical" Margin="20">
+            <Label x:Name="lblTime"
+                   HorizontalTextAlignment="Center" Margin="0,0,0,20"
+                   BackgroundColor="Black" 
+                   Opacity="0.9" 
+                   TextColor="#ffffff"
+                   FontSize="60"/>
+            <StackLayout Orientation="Horizontal" Margin="20">
+                <Button x:Name="btnStartStop"
+                    Text="&#x25b6;"
+                    HorizontalOptions="Start"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    WidthRequest="100" HeightRequest="40" 
+                    Clicked="BtnStartStop_Click"/>
+                <Button x:Name="btnReset" 
+                        Text=" &#10226;"
+                        WidthRequest="100" HeightRequest="40" 
+                        HorizontalOptions="EndAndExpand"
+                        BackgroundColor="Blue"
+                       TextColor="White"
+                        Clicked="BtnReset_Click"/>
+                <Button x:Name="btnLap" 
+                        Text="&#x1f3c1;"
+                        WidthRequest="100" HeightRequest="40" 
+                        HorizontalOptions="EndAndExpand"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        Clicked="btnLap_Clicked"
+                    />
+
+            </StackLayout>
+
+
+            <StackLayout Style="{StaticResource MainLayout}"  >
+                <ScrollView       
+                            BackgroundColor ="Azure"
+                            VerticalOptions="FillAndExpand" HorizontalOptions="Center"  >
+                    <ListView x:Name="lvRondeLijst" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Brown"
+                       WidthRequest="600" >
+                        <ListView.ItemTemplate >
+                            <DataTemplate  >
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label x:Name="cllRondetijd" 
+                                               Text="{Binding DisplayName}"
+                                               TextColor="White" 
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               HorizontalTextAlignment="Center"
+                                               >
+                                            <Label.FontSize>
+                                                <OnPlatform x:TypeArguments="x:Double">
+                                                    <On Platform="iOS, Android">20</On>
+                                                    <On Platform="Windows,UWP">40</On>
+                                                </OnPlatform>
+                                            </Label.FontSize>
+                                        </Label>
+                                    </StackLayout>
+                                </ViewCell>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
