@@ -17,12 +17,23 @@
             <Color x:Key="ColorPrimary">#2196F3</Color>
             <Color x:Key="ColorSecundary">#1976D2</Color>
             <Color x:Key="ColorAccent">#ffffff</Color>
+            <Color x:Key="ColorError">#ff0000</Color>
+            <Color x:Key="PageBackgroundColor">#000000</Color>
+            <Color x:Key="TitleTextColor">#ffffb3</Color>
+            <Color x:Key="NormalTextColor">#f3f0eb</Color>
+          
             <!-- On Platform Resources -->
             <OnPlatform x:Key="DefaultThickness" x:TypeArguments="Thickness">
                 <On Platform="iOS" Value="15"></On>
                 <On Platform="Android" Value="20"></On>
-                <On Platform="Windows" Value="10"></On>
+                <On Platform="Windows,UWP" Value="10"></On>
             </OnPlatform>
+
+            <OnPlatform x:Key="ErrorMessageFontSize" x:TypeArguments="NamedSize">
+                <On Platform="iOS, Android" Value="Small"></On>
+                <On Platform="Windows,UWP" Value="Micro"></On>
+            </OnPlatform>
+            
             <!-- Explicit Styles -->
             <Style x:Key="MainLayout" TargetType="StackLayout">
                 <Setter Property="Margin" Value="{StaticResource DefaultThickness}" />
@@ -32,10 +43,82 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource ColorPrimary}" />
             </Style>
 
-            <!-- Common Colors -->
-            <Color x:Key="PageBackgroundColor">#000000</Color>
-            <Color x:Key="TitleTextColor">#ffffb3</Color>
-            <Color x:Key="NormalTextColor">#f3f0eb</Color>
+            <Style x:Key="ErrorMessage" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ColorError}"/>
+                <Setter Property="FontSize" Value="{StaticResource ErrorMessageFontSize}"/>
+                <Setter Property="Margin" Value="2,-5,7,0"/>
+                <Setter Property="IsVisible" Value="False"/>
+            </Style>
+            <!-- Explicit Styles =>  FeedbackForm -->
+            <Style x:Key="FeedbackEntry" TargetType="Label" >
+                <Setter Property="BackgroundColor" Value="#e6f2ff"/>
+                <Setter Property="TextColor" Value="{StaticResource PageBackgroundColor }"/>
+                <Setter Property="Margin" Value="20,0,10,0"/>
+            </Style>
+            <Style x:Key="FeedbackLabelForm" TargetType="Label" >
+                <Setter Property="Margin" Value="10,0,0,0"/>
+            </Style>
+            <Style x:Key="FeedbackLabelTitle" TargetType="Label" >
+                <Setter Property="Margin" Value="15"/>
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="FeedbackStackLayout" TargetType="StackLayout" >
+                <Setter Property="Margin" Value="20,0,20,0"/>
+                <Setter Property="Orientation" Value="Vertical"/>
+                <Setter Property="BackgroundColor" Value="#999966"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            <!-- Explicit Styles =>  Timer -->
+            <Style x:Key="TimerLabel" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,0,0,20"/>
+                <Setter Property="Opacity" Value="0.9"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor }"/>
+                <Setter Property="TextColor" Value="{StaticResource ColorAccent}"/>
+                <Setter Property="FontSize" Value="60"/>
+            </Style>
+            <Style x:Key="TimerStartStopBtn" TargetType="Button">
+                <Setter Property="Text" Value="&#x25b6;"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="BackgroundColor" Value="Green"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="WidthRequest" Value="100"/>
+            </Style>
+            <Style x:Key="TimerResetBtn" TargetType="Button" BasedOn="{StaticResource TimerStartStopBtn}">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                <Setter Property="BackgroundColor" Value="Blue"/>
+                <Setter Property="Text" Value="&#10226;"/>
+            </Style>
+            <Style x:Key="TimerLapBtn" TargetType="Button" BasedOn="{StaticResource TimerResetBtn}">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorAccent}"/>
+                <Setter Property="Text" Value="&#x1f3c1;"/>
+            </Style>
+
+            <Style x:Key="RondeTijdListVw" TargetType="ListView" >
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="Brown"/>
+            </Style>
+
+            <Style x:Key="RondeTijdLabel" TargetType="Label" >
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="{StaticResource ColorAccent}"/>
+            </Style>
+
+            <Style x:Key="TimerStackLayout" TargetType="StackLayout" >
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="Orientation" Value="Vertical"/>
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+            <Style x:Key="TimerStackLayoutBtn" TargetType="StackLayout" BasedOn="{StaticResource TimerStackLayout}" >
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
 
             <!-- Implicit Page Styles (for ALL pages, no x:Key present!) -->
             <Style x:Key="BasePageStyle" TargetType="Page">
@@ -43,10 +126,7 @@
                 <Setter Property="Opacity" Value="0.9"/>
             </Style>
             <Style x:Key="ContentPageStyle" TargetType="ContentPage" BasedOn="{StaticResource BasePageStyle}" />
-            <Style x:Key="MasterDetailPageStyle" TargetType="MasterDetailPage" BasedOn="{StaticResource BasePageStyle}" >
-                <Setter Property="BackgroundColor" Value="#ffffcc"></Setter>
-            </Style>
-
+           
             <!-- ContentPage Style -->
             <Style x:Key="PlatformPaddedContentPageStyle" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor}" />
@@ -61,43 +141,14 @@
             <Style x:Key="CustomCaptionStyle" TargetType="Label" BaseResourceKey="CaptionStyle">
                 <Setter Property="TextColor" Value="{StaticResource TitleTextColor}" />
             </Style>
-            <!-- Implicit style (applies to ALL Labels) for Body (inherits from built-in BodyStyle) -->
+             <!--Implicit style (applies to ALL Labels) for Body (inherits from built-in BodyStyle)--> 
             <Style TargetType="Label" BaseResourceKey="BodyStyle">
                 <Setter Property="TextColor" Value="{StaticResource NormalTextColor}" />
             </Style>
             <Style x:Key="WikipageLabel"  TargetType="Label" BaseResourceKey="BodyStyle">
                 <Setter Property="TextColor" Value="#000000" />
             </Style>
-
-           
-            <!-- Default Buttons --><!--
-            <Color x:Key="DefaultButtonTextColor">#473e36</Color>
-            <Color x:Key="DefaultButtonBackColor">#fef3cd</Color>
-            <Style x:Key="DefaultButtonStyle" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="TextColor" Value="{StaticResource DefaultButtonTextColor}" />
-                <Setter Property="BackgroundColor" Value="{StaticResource DefaultButtonBackColor}" />
-                <Setter Property="Margin" Value="10,0,10,0" />
-            </Style>
-
-            --><!-- Cancel Buttons --><!--
-            <Color x:Key="CancelButtonTextColor">#fef3cd</Color>
-            <Color x:Key="CancelButtonBackColor">#f67d15</Color>
-            <Style x:Key="CancelButtonStyle" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
-                <Setter Property="TextColor" Value="{StaticResource CancelButtonTextColor}" />
-                <Setter Property="BackgroundColor" Value="{StaticResource CancelButtonBackColor}" />
-            </Style>-->
-
-            <!-- Master page Views -->
-            <Color x:Key="MasterPageTextColor">#473e36</Color>
-            <Color x:Key="MasterPageBackgroundColor">#ecffb3</Color>
-            <Style x:Key="MasterPageListView" TargetType="ListView">
-                <Setter Property="BackgroundColor" Value="{StaticResource MasterPageBackgroundColor}" />
-            </Style>
-            <Style x:Key="MasterPageListLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource MasterPageTextColor}" />
-            </Style>
+          
             <!--Global, Implicit (=Valid for All controls of this Targettype)-->
             <Style TargetType="views:BusyView" >
                 <Setter Property="BackgroundColor" Value="#000000" />

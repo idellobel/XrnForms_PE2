@@ -4,37 +4,28 @@
              x:Class="B4.PE2.DellobelI.Views.TimerView"
              Title="&#x23f1;" 
              Style="{StaticResource ContentPageStyle}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+           
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Timer" ></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
 
-        <StackLayout VerticalOptions="CenterAndExpand"  Orientation="Vertical" Margin="20">
+        <StackLayout Style="{StaticResource TimerStackLayout}">
             <Label x:Name="lblTime"
-                   HorizontalTextAlignment="Center" Margin="0,0,0,20"
-                   BackgroundColor="Black" 
-                   Opacity="0.9" 
-                   TextColor="#ffffff"
-                   FontSize="60"/>
-            <StackLayout Orientation="Horizontal" Margin="20">
+                   Style="{StaticResource TimerLabel}"/>
+            <StackLayout Style="{StaticResource TimerStackLayoutBtn}">
                 <Button x:Name="btnStartStop"
-                    Text="&#x25b6;"
-                    HorizontalOptions="Start"
-                    BackgroundColor="Green"
-                    TextColor="White"
-                    WidthRequest="100" HeightRequest="40" 
+                    Style="{StaticResource TimerStartStopBtn}" 
                     Clicked="BtnStartStop_Click"/>
                 <Button x:Name="btnReset" 
-                        Text=" &#10226;"
-                        WidthRequest="100" HeightRequest="40" 
-                        HorizontalOptions="EndAndExpand"
-                        BackgroundColor="Blue"
-                       TextColor="White"
+                        Style="{StaticResource TimerResetBtn}"
                         Clicked="BtnReset_Click"/>
-
             </StackLayout>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

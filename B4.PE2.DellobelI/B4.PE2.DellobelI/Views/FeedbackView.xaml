@@ -1,10 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="B4.PE2.DellobelI.Views.FeedbackView">
+             x:Class="B4.PE2.DellobelI.Views.FeedbackView"
+             xmlns:views="clr-namespace:B4.PE2.DellobelI.Views"
+             Title="&#x1f4e9;   Feedback "
+             Style="{StaticResource ContentPageStyle}">
+    
+    <ContentPage.ToolbarItems>
+         <ToolbarItem Text="Verzend" Clicked="btnZendFeedback_Clicked" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
+        <ScrollView>
+            <!--<AbsoluteLayout AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalOptions="Center" VerticalOptions="Center">-->
+            <StackLayout Orientation="Vertical" >
+                <Label Text="Heb je een vraag?" Style="{StaticResource FeedbackLabelTitle}"/>
+                <StackLayout Style="{StaticResource FeedbackStackLayout }" >
+                        <StackLayout.WidthRequest>
+                            <OnIdiom x:TypeArguments="x:Double"
+                                 Phone="500"
+                                 Desktop="800">
+                            </OnIdiom>
+                        </StackLayout.WidthRequest>
+                    <Label Text="Naam en Voornaam:" Style="{StaticResource FeedbackLabelForm}"/>
+                    <Entry x:Name="txtNaamEnVoornaam" Keyboard="Default" Placeholder="Naam en Voornaam" Style="{StaticResource FeedbackEntry}"/>
+                    <Label x:Name="lblErrorName" Style="{StaticResource ErrorMessage}"/>
+                    <Label Text="E-mailadres:" Style="{StaticResource FeedbackLabelForm}"/>
+                    <Entry x:Name="txtEmail" Keyboard="Email" Placeholder="Geldig e-mail" Style="{StaticResource FeedbackEntry}"/>
+                    <Label x:Name="lblErrorEmail" Style="{StaticResource ErrorMessage}"/>
+                    <Label Text="Telefoonnummer:" Style="{StaticResource FeedbackLabelForm}"/>
+                    <Entry x:Name="txtTelefoon" Keyboard="Telephone" Placeholder="Telefoonnummer" Style="{StaticResource FeedbackEntry}"/>
+                    <Label x:Name="lblErrorTelefoon" Style="{StaticResource ErrorMessage}"/>
+                    <Label Text="Geboortedatum:" Style="{StaticResource FeedbackLabelForm}"/>
+                    <Entry x:Name="txtGeboortedatum" Keyboard="Default" Placeholder="Geboortedatum" Style="{StaticResource FeedbackEntry}"/>
+                    <Label x:Name="lblErrorGeboortedatum" Style="{StaticResource ErrorMessage}"/>
+                    <Label Text="Kies een onderwerp:" Style="{StaticResource FeedbackLabelForm}"/>
+                    <Picker x:Name="picOnderwerp"  Style="{StaticResource FeedbackEntry }">
+                        <Picker.Items >
+                            <x:String >Kies uit volgende lijst...</x:String>
+                            <x:String >Facturering/Verkoop</x:String>
+                            <x:String>Technisch defect</x:String>
+                            <x:String>Andere</x:String>
+
+                        </Picker.Items>
+                        <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                        </Picker>
+                    <Label x:Name="lblErrorOnderwerp" Style="{StaticResource ErrorMessage}"/>
+                    <Label Text="Schrijf uw bericht:" Style="{StaticResource FeedbackLabelForm}"/>
+                    <Editor x:Name="txtBericht" HeightRequest="100" Style="{StaticResource FeedbackEntry}"/>
+                    <Label x:Name="lblErrorBericht" Style="{StaticResource ErrorMessage}"/>
+                </StackLayout>
         </StackLayout>
+                <!--<views:BusyView x:Name="busyindicator"/>-->
+            <!--</AbsoluteLayout>-->
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

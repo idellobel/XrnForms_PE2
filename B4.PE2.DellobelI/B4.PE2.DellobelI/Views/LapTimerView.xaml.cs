@@ -105,7 +105,7 @@ namespace B4.PE2.DellobelI.Views
         protected override void OnAppearing()
         {
 
-            base.OnAppearing();
+            
             //pageVisible = true;
             Device.StartTimer(TimeSpan.FromMilliseconds(10), () =>
             {
@@ -121,6 +121,7 @@ namespace B4.PE2.DellobelI.Views
                 btnStartStop.TextColor = Color.White;
 
             }
+            base.OnAppearing();
         }
 
         protected override void OnDisappearing()

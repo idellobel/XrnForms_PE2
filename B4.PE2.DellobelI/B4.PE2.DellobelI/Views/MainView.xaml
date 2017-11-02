@@ -7,11 +7,17 @@
              Title="Timer en Form"
              Style="{StaticResource ContentPageStyle}">
     <ContentPage.Content>
-        <AbsoluteLayout AbsoluteLayout.LayoutFlags="All"
-                        AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <ScrollView>
-                <StackLayout Orientation="Vertical"  Margin="20">
+        <ScrollView>
+            <AbsoluteLayout AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalOptions="Center" VerticalOptions="Center">
 
+                <StackLayout Orientation="Vertical"  Margin="20" HorizontalOptions="Center" >
+                    <StackLayout.WidthRequest>
+                        <OnIdiom x:TypeArguments="x:Double"
+                                 Phone="200"
+                                 Desktop="1500">                            
+                        </OnIdiom> 
+                    </StackLayout.WidthRequest>
                     <Image x:Name="timermpg" HorizontalOptions="Center"
                     Source="{extensions:ImageResource B4.PE2.DellobelI.images.timermpg.jpg}" Margin="20,20,20,0"
                        BackgroundColor="Black" Opacity="0.9" 
@@ -50,8 +56,9 @@
                         </Image.GestureRecognizers>
                     </Image>
                 </StackLayout>
-            </ScrollView>
+            
             <views:BusyView x:Name="busyindicator"/>
         </AbsoluteLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
