@@ -1,8 +1,15 @@
 ﻿{
   "dependencies": {
     "FluentValidation": "7.2.1",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "Xamarin.Forms": "2.4.0.18342"
+    "Microsoft.Bcl.Build": "1.0.21",
+    "Microsoft.NETCore.Platforms": "2.0.0",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
+    "NETStandard.Library": "2.0.1",
+    "Newtonsoft.Json": "10.0.3",
+    "Sendgrid": "9.9.0",
+    "System.Net.Http": "4.3.3",
+    "Xam.Plugins.Messaging": "4.0.0",
+    "Xamarin.Forms": "2.4.0.38779"
   },
   "frameworks": {
     "uap10.0.10586": {}
