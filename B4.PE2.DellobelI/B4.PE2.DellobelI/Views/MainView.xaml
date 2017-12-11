@@ -59,6 +59,6 @@
             
             <views:BusyView x:Name="busyindicator"/>
         </AbsoluteLayout>
-        </ScrollView>
+      </ScrollView>  
     </ContentPage.Content>
 </ContentPage>
