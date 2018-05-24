@@ -8,7 +8,7 @@ namespace B4.PE2.DellobelI.ApiKey
 {
     public class ApiKey
     {
-        private string key = "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";
+        private string key = "";
         public string Key { get; set; }
 
         public ApiKey()
